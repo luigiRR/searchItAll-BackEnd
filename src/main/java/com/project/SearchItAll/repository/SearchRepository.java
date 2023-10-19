@@ -28,4 +28,14 @@ public class SearchRepository {
 		listBusiness = entityManager.createNativeQuery(sb.toString()).getResultList();
 		return listBusiness;
 	}
+
+	public List<Object[]> categories(Map params) {
+		StringBuilder sb = new StringBuilder();
+		List<Object[]> listCategories = new ArrayList<Object[]>();
+		
+		sb.append("select  c.id as catrgoryid,c.name,c.comment1 from category c ");
+		
+		listCategories = entityManager.createNativeQuery(sb.toString()).getResultList();
+		return listCategories;
+	}
 }

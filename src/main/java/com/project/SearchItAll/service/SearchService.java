@@ -40,4 +40,24 @@ public class SearchService implements ISearchService {
 		return response;
 	}
 
+	@Override
+	public GenericResponseDTO<BusinessDTO> categories(Map params) throws Exception {
+		GenericResponseDTO<BusinessDTO> response = new GenericResponseDTO<>();
+		List<Object[]> list = searRepo.categories(params);
+		List<BusinessDTO> listCategories = new ArrayList();
+		
+		for(int i=0; i<list.size(); i++) {
+			Object[] item = list.get(i);
+			
+			BusinessDTO business = BusinessDTO.builder()
+					.categoryId(Integer.parseInt(item[0].toString()))
+					.categoryName(item[1].toString())
+					.comment1(item[2].toString())
+					.build();
+			listCategories.add(business);
+		}
+		response.setList(listCategories);
+		return response;
+	}
+
 }

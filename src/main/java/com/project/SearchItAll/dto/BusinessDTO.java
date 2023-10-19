@@ -23,4 +23,6 @@ public class BusinessDTO {
 	
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	String createAt;
+	
+	String comment1;
 }

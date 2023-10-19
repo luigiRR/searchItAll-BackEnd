@@ -8,4 +8,6 @@ import com.project.SearchItAll.dto.GenericResponseDTO;
 public interface ISearchService {
 
 	public GenericResponseDTO<BusinessDTO> businessType(Map params) throws Exception;
+
+	public GenericResponseDTO<BusinessDTO> categories(Map params) throws Exception;
 }

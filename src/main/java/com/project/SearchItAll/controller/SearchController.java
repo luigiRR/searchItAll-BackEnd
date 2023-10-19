@@ -33,10 +33,17 @@ public class SearchController {
 	@GetMapping("/business-type")
 	public ResponseEntity businessType(@RequestParam Map params, HttpServletRequest req) {
 		try {
-			Map response = new HashMap();
-			response.put("msg", "respondiendo un string");
-			
 			GenericResponseDTO<BusinessDTO> business = searchService.businessType(params);
+			return new ResponseEntity<>(business, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(new HashMap() {{ put("error",e.getMessage()); } }, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	@GetMapping("/categories")
+	public ResponseEntity categories(@RequestParam Map params, HttpServletRequest req) {
+		try {
+			GenericResponseDTO<BusinessDTO> business = searchService.categories(params);
 			return new ResponseEntity<>(business, HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(new HashMap() {{ put("error",e.getMessage()); } }, HttpStatus.INTERNAL_SERVER_ERROR);
