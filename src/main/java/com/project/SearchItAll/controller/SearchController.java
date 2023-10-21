@@ -49,5 +49,15 @@ public class SearchController {
 			return new ResponseEntity<>(new HashMap() {{ put("error",e.getMessage()); } }, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+	
+	@GetMapping("/business-for-type")
+	public ResponseEntity getBusinessForType(@RequestParam Map params, HttpServletRequest req) {
+		try {
+			GenericResponseDTO<BusinessDTO> business = searchService.getBusinessForType(params);
+			return new ResponseEntity<>(business, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(new HashMap() {{ put("error",e.getMessage()); } }, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 
 }

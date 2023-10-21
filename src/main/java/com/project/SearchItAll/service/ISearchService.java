@@ -10,4 +10,6 @@ public interface ISearchService {
 	public GenericResponseDTO<BusinessDTO> businessType(Map params) throws Exception;
 
 	public GenericResponseDTO<BusinessDTO> categories(Map params) throws Exception;
+
+	GenericResponseDTO<BusinessDTO> getBusinessForType(Map params) throws Exception;
 }

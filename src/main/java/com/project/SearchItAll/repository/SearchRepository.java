@@ -38,4 +38,21 @@ public class SearchRepository {
 		listCategories = entityManager.createNativeQuery(sb.toString()).getResultList();
 		return listCategories;
 	}
+	
+	public List<Object[]> getBusinessForType(Map params) throws Exception {
+		StringBuilder sb = new StringBuilder();
+		List<Object[]> listCategories = new ArrayList<Object[]>();
+		
+		Integer categoryId = Integer.parseInt(params.get("categoryId").toString());
+		Integer businessTypeId = Integer.parseInt(params.get("businessTypeId").toString());
+		
+		sb.append("select b.id as businessid, bt.id as businesstypeid, c.id as categoryid,b.name ,b.address ,b.numberphone,bt.name,c.name ")
+		.append("from business b ")
+		.append("inner join businesstype bt on bt.id = b.businesstypeid ")
+		.append("inner join category c on c.id = bt.categoryid ")
+		.append("where c.id = "+categoryId+" and bt.id ="+businessTypeId+"");
+		
+		listCategories = entityManager.createNativeQuery(sb.toString()).getResultList();
+		return listCategories;
+	}
 }
