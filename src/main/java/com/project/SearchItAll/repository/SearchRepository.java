@@ -33,7 +33,12 @@ public class SearchRepository {
 		StringBuilder sb = new StringBuilder();
 		List<Object[]> listCategories = new ArrayList<Object[]>();
 		
-		sb.append("select  c.id as catrgoryid,c.name,c.comment1 from category c ");
+		String where ="";
+		if(params.containsKey("search") && !params.get("search").toString().isEmpty()) {
+			where = " where c.name like '%"+params.get("search").toString()+"%' ";
+		}
+		
+		sb.append("select  c.id as catrgoryid,c.name,c.comment1 from category c "+where+"");
 		
 		listCategories = entityManager.createNativeQuery(sb.toString()).getResultList();
 		return listCategories;
